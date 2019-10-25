@@ -2,8 +2,8 @@ import java.util.*;
 
 // main class
 public class Hangman {
-    // private static final boolean testingMode = true;
-
+    private static final boolean testingMode = true;
+    
     // you will take care of user interaction under main method
     public static void main(String[] args) {
 
