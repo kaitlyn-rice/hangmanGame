@@ -103,7 +103,6 @@ public class Hangman {
     //        spaceAllowed: 4
     //        return: false
     public static boolean validPosition(String positionStr, int spaceAllowed) {
-        
         return true;
     }
     
@@ -164,7 +163,12 @@ public class Hangman {
             System.out.println(); //breaks up the prompts
             System.out.print("Please enter the spaces you want to check (separated by spaces): ");
             input = sc.nextLine();
-            validPosition(input, space);
+            if(!validPosition(input, space)){
+               System.out.println("Your input is not valid.  Try again.");
+               System.out.println("Guesses Remaining: " + guess);
+               continue;
+            }
+            
         }while (guess != 0 || word.equals(str));
     }
 }
