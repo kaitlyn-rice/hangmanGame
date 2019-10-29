@@ -102,7 +102,7 @@ public class Hangman {
     //        spaceAllowed: 4
     //        return: false
     public static boolean validPosition(String positionStr, int spaceAllowed) {
-        // remove this line
+        
         return true;
     }
     
@@ -123,11 +123,17 @@ public class Hangman {
     //        spaceAllowed: 4
     //        return: {0, 1, 3, 4}
     public static int[] getPosition(String positionStr, int spaceAllowed) {
-        // remove these two line
-        int[] arr = {-1};
+        int[] arr = new int[spaceAllowed];
+        
         return arr;
     }
 
+    //checks user character guess
+    public static boolean isChar(char c) {
+         if(Character.isLetter(c))
+            return true;
+         return false;
+    }
     
     //the method that contains the actual game play
     public static void playGame(int guess, int space){
