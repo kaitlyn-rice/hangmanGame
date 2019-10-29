@@ -6,7 +6,61 @@ public class Hangman {
     
     // you will take care of user interaction under main method
     public static void main(String[] args) {
-
+        Scanner sc = new Scanner(System.in);
+        int timesPlayed = 1;
+        char userEntry;
+        String input;
+        //to set the difficulty
+        do{    
+            int check = 1;
+            do{
+                System.out.println("Enter your difficulty: Easy(e), Intermediate (i), or Hard (h)");
+                input = sc.nextLine().toLowerCase();
+                userEntry = input.charAt(0);
+                
+                //ensures that the case always matches with toLowerCase()
+            
+                switch(userEntry){
+                    case 'e':
+                    playGame(15,4);
+                    check = 1;
+                    break;
+                    
+                    case 'i':
+                    playGame(12,3);
+                    check = 1;
+                    break;
+                
+                    case 'h':
+                    playGame(10,2);
+                    check = 1;
+                    break;
+                    
+                    
+                    default:
+                    System.out.println("\nInvalid diffifulty. Try again...");
+                    check = 0;
+                    //in case the user inputs a command wrong
+                }
+            }while(check!=1);
+            System.out.println("Would you like to play again? Yes(y) or No(n)");
+            input = sc.nextLine().toLowerCase();
+            userEntry = input.charAt(0);
+            switch(userEntry){
+                case 'y':
+                System.out.println();
+                timesPlayed++;
+                break;
+                
+                case 'n':
+                System.out.println();
+                break;
+                
+                default:
+                System.out.println("\nInvalid entry. Try again...");
+                //in case the user inputs a command wrong
+            }
+        }while(userEntry!='n'||timesPlayed>20);
     }
 
     
@@ -69,5 +123,15 @@ public class Hangman {
         return arr;
     }
 
-    // you are welcome to add more methods if you want
+    
+    //the method that contains the actual game play
+    public static void playGame(int guess, int space){
+        String word = RandomWord.newWord();
+        String str = "";
+        Scanner sc = new Scanner(System.in);
+        for(int i = 0; i<word.length(); i++){
+            str= str + "-";
+        }
+        System.out.println(word);
+    }
 }
