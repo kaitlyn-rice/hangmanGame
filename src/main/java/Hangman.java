@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 // main class
@@ -126,12 +125,13 @@ public class Hangman {
         int[] arr = new int[spaceAllowed];
         int i =0;
         StringTokenizer t = new StringTokenizer(positionStr, " ");
+        //creates a collection of tokens of the index positions
         do{
            String str =  t.nextToken();
            arr[i] = Integer.parseInt(str);   
            i++;
-                 
-           }while (t.hasMoreTokens() == true);
+        }while (t.hasMoreTokens() == true);
+        //compiles the tokens into the array
         return arr;
     }
 
@@ -151,7 +151,7 @@ public class Hangman {
             str= str + "-";
         }
         //creates the string with dashes in it to print as the user guesses
-        System.out.println("The word is: "+word);
+        System.out.println("The word is: "+str);
         do{
             System.out.print("Please enter the letter you want to guess: ");
             String input = sc.nextLine().toLowerCase();
