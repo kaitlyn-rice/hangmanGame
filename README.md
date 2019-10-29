@@ -1,5 +1,5 @@
 # cs145-project1
 
-Names: Please edit this.
+Names: Marina Broach, Kaitlyn Rice
 
-About This Project: Please edit this.
+About This Project: The game Hangman
