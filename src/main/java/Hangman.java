@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 // main class
@@ -124,7 +125,14 @@ public class Hangman {
     //        return: {0, 1, 3, 4}
     public static int[] getPosition(String positionStr, int spaceAllowed) {
         int[] arr = new int[spaceAllowed];
-        
+        int i =0;
+        StringTokenizer t = new StringTokenizer(positionStr, " ");
+        do{
+           String str =  t.nextToken();
+           arr[i] = Integer.parseInt(str);   
+           i++;
+                 
+           }while (t.hasMoreTokens() == true);
         return arr;
     }
 
@@ -143,6 +151,20 @@ public class Hangman {
         for(int i = 0; i<word.length(); i++){
             str= str + "-";
         }
-        System.out.println(word);
+        //creates the string with dashes in it to print as the user guesses
+        System.out.println("The word is: "+word);
+        do{
+            System.out.print("Please enter the letter you want to guess: ");
+            String input = sc.nextLine().toLowerCase();
+            char letter = input.charAt(0);
+            if(!isChar(letter)){
+                System.out.println("Your input is not valid. Try again.");
+                continue;
+            }//checks that the input is actually a letter
+            System.out.println(); //breaks up the prompts
+            System.out.print("Please enter the spaces you want to check (separated by spaces): ");
+            input = sc.nextLine();
+            validPosition(input, space);
+        }while (guess != 0 || word.equals(str));
     }
 }
