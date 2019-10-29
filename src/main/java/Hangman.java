@@ -70,8 +70,13 @@ public class Hangman {
     // when str can be parsed to an integer without any needs of modification
     // return true; otherwise false
     public static boolean isInt(String str) {
-        // remove this line
-        return true;
+        try{
+          Integer.parseInt(str);
+          return true;
+        }
+        catch(NumberFormatException e){
+          return false;
+        }
     }
     
 
