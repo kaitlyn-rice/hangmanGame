@@ -43,13 +43,17 @@ public class Hangman {
                     //in case the user inputs a command wrong
                 }
             }while(check!=1);
-            System.out.println("Would you like to play again? Yes(y) or No(n)");
+            System.out.println("\nWould you like to play again? Yes(y) or No(n)");
             input = sc.nextLine().toLowerCase();
             userEntry = input.charAt(0);
             switch(userEntry){
                 case 'y':
                 System.out.println();
                 timesPlayed++;
+                if(timesPlayed ==20){
+                    System.out.println("Error: played too many times.");
+                    System.exit(0);
+                }
                 break;
                 
                 case 'n':
@@ -60,7 +64,7 @@ public class Hangman {
                 System.out.println("\nInvalid entry. Try again...");
                 //in case the user inputs a command wrong
             }
-        }while(userEntry!='n'||timesPlayed>20);
+        }while(userEntry!='n');
     }
 
     
@@ -167,6 +171,7 @@ public class Hangman {
     //the method that contains the actual game play
     public static void playGame(int guess, int space){
         String word = RandomWord.newWord().toLowerCase();
+        System.out.println(word);
         String str = "";
         String solve = "solve";
         int gCheck;
@@ -213,7 +218,6 @@ public class Hangman {
                System.out.println("Guesses Remaining: " + guess);
                continue;
             }
-            System.out.println(word);
             gCheck = 0;
             for(int i = 0; i < inputArr.length; i++) {
                if(word.charAt(inputArr[i]) == letter) {
@@ -229,9 +233,14 @@ public class Hangman {
                     str= s;
                }
             }
-            if(gCheck == 0) 
+            if(gCheck == 0){ 
                guess--;
-            System.out.println(str);
+               System.out.println("Your letter was not found in the spaces you provided.");
+            }else{
+                System.out.println("Your guess is in the word!");
+            }
+            
+            System.out.println("The updated word is: "+str);
             System.out.println("Guesses remaining: " + guess);
             if(guess == 0)System.out.println("You have failed to guess the word... :(");
             if(word.equals(str)){
