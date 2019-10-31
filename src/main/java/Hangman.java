@@ -171,7 +171,6 @@ public class Hangman {
     //the method that contains the actual game play
     public static void playGame(int guess, int space){
         String word = RandomWord.newWord().toLowerCase();
-        System.out.println(word);
         String str = "";
         String solve = "solve";
         int gCheck;
