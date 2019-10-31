@@ -154,6 +154,16 @@ public class Hangman {
          return false;
     }
     
+    //checks that the indices entered are valid in the length of the word
+    public static boolean validIndex(int[] arr, String str){
+        for(int i = 0; i<arr.length; i++){
+            if(arr[i] > str.length()-1){
+                return false;
+            }
+        }
+        return true;
+    }
+    
     //the method that contains the actual game play
     public static void playGame(int guess, int space){
         String word = RandomWord.newWord();
@@ -180,12 +190,28 @@ public class Hangman {
                System.out.println("Guesses Remaining: " + guess);
                continue;
             }
+            
             int[] inputArr = getPosition(input, space);
+            if(validIndex(inputArr, word)){
+               System.out.println("Your input is not valid.  Try again.");
+               System.out.println("Guesses Remaining: " + guess);
+               continue;
+            }
+            System.out.println(word);
             for(int i = 0; i < inputArr.length; i++) {
                if(word.charAt(inputArr[i]) == letter) {
-                  str = str.substring(0, i) + letter + str.substring(i + 1);
+                  String s = "";
+                    for(int n=0; n<str.length(); n++){
+                        if(n==inputArr[i]){
+                            s+=letter;
+                        }else{
+                            s+=str.charAt(n);
+                        }
+                    }
+                    str= s;
                }
             }
-        }while (guess != 0 || word.equals(str));
+            System.out.println(str);
+        }while (guess != 0 || !word.equals(str));
     }
 }
