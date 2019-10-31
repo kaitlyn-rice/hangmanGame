@@ -229,10 +229,15 @@ public class Hangman {
                     str= s;
                }
             }
-            if(gCheck != 0) 
+            if(gCheck == 0) 
                guess--;
             System.out.println(str);
             System.out.println("Guesses remaining: " + guess);
-        }while (!word.equals(str) || guess != 0);
+            if(guess == 0)System.out.println("You have failed to guess the word... :(");
+            if(word.equals(str)){
+                System.out.println("You win! \r\nYou have guessed the word! Congratulations"); 
+                break;
+            }
+        }while (guess != 0);
     }
 }
