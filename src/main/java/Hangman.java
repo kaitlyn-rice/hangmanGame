@@ -166,9 +166,10 @@ public class Hangman {
     
     //the method that contains the actual game play
     public static void playGame(int guess, int space){
-        String word = RandomWord.newWord();
+        String word = RandomWord.newWord().toLowerCase();
         String str = "";
         String solve = "solve";
+        int gCheck;
         Scanner sc = new Scanner(System.in);
         for(int i = 0; i<word.length(); i++){
             str= str + "-";
@@ -207,14 +208,16 @@ public class Hangman {
             }
             
             int[] inputArr = getPosition(input, space);
-            if(validIndex(inputArr, word)){
+            if(!validIndex(inputArr, word)){
                System.out.println("Your input is not valid.  Try again.");
                System.out.println("Guesses Remaining: " + guess);
                continue;
             }
             System.out.println(word);
+            gCheck = 0;
             for(int i = 0; i < inputArr.length; i++) {
                if(word.charAt(inputArr[i]) == letter) {
+                  gCheck++;
                   String s = "";
                     for(int n=0; n<str.length(); n++){
                         if(n==inputArr[i]){
@@ -226,7 +229,10 @@ public class Hangman {
                     str= s;
                }
             }
+            if(gCheck != 0) 
+               guess--;
             System.out.println(str);
-        }while (guess != 0 || !word.equals(str));
+            System.out.println("Guesses remaining: " + guess);
+        }while (!word.equals(str) || guess != 0);
     }
 }
