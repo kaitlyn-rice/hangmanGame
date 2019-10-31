@@ -108,15 +108,12 @@ public class Hangman {
         //creates a collection of tokens of the index positions
         do{
            String str =  t.nextToken();
-           try{
-               arr.add(Integer.parseInt(str));  
-            } catch(NumberFormatException e){
-                return false;
-            }//returns false if there is a non-number in the input
+           if(!isInt(str)) return false; //ensures that the input is a number
+           arr.add(Integer.parseInt(str));
            i++;
         }while (t.hasMoreTokens() == true);
         
-        if(arr.size() == spaceAllowed) return true; //ensures that there is the right num of indices
+        if(arr.size() == spaceAllowed) return true; //ensures that there is the right number of indices
         return false;
     }
     
