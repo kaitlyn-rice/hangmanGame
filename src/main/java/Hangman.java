@@ -168,6 +168,7 @@ public class Hangman {
     public static void playGame(int guess, int space){
         String word = RandomWord.newWord();
         String str = "";
+        String solve = "solve";
         Scanner sc = new Scanner(System.in);
         for(int i = 0; i<word.length(); i++){
             str= str + "-";
@@ -177,6 +178,20 @@ public class Hangman {
         do{
             System.out.print("Please enter the letter you want to guess: ");
             String input = sc.nextLine().toLowerCase();
+            if(input.equals(solve)) {
+               System.out.println("Please solve the word!");
+               input = sc.nextLine().toLowerCase();
+               if(input.equals(word)) {
+                  System.out.println("You win! \r\nYou have guessed the word! Congratulations"); 
+                  str = word;
+                  break;
+               }
+               if(!input.equals(word)) {
+                  System.out.println("That is not the secret word");
+                  guess--;
+                  System.out.println("Guesses remaining: " + guess);
+               }
+            }
             char letter = input.charAt(0);
             if(!isChar(letter)){
                 System.out.println("Your input is not valid. Try again.");
