@@ -180,7 +180,12 @@ public class Hangman {
                System.out.println("Guesses Remaining: " + guess);
                continue;
             }
-            
+            int[] inputArr = getPosition(input, space);
+            for(int i = 0; i < inputArr.length; i++) {
+               if(word.charAt(inputArr[i]) == letter) {
+                  str = str.substring(0, i) + letter + str.substring(i + 1);
+               }
+            }
         }while (guess != 0 || word.equals(str));
     }
 }
