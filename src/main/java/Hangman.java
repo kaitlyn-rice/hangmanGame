@@ -102,7 +102,22 @@ public class Hangman {
     //        spaceAllowed: 4
     //        return: false
     public static boolean validPosition(String positionStr, int spaceAllowed) {
-        return true;
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        int i =0;
+        StringTokenizer t = new StringTokenizer(positionStr, " ");
+        //creates a collection of tokens of the index positions
+        do{
+           String str =  t.nextToken();
+           try{
+               arr.add(Integer.parseInt(str));  
+            } catch(NumberFormatException e){
+                return false;
+            }//returns false if there is a non-number in the input
+           i++;
+        }while (t.hasMoreTokens() == true);
+        
+        if(arr.size() == spaceAllowed) return true; //ensures that there is the right num of indices
+        return false;
     }
     
 
