@@ -16,7 +16,7 @@ public class Hangman {
             do{
                 System.out.println("Enter your difficulty: Easy(e), Intermediate (i), or Hard (h)");
                 input = sc.nextLine().toLowerCase();
-                userEntry = input.charAt(0);
+                userEntry = input.charAt(0); // cehcks the first letter of user input
                 
                 //ensures that the case always matches with toLowerCase()
             
@@ -49,8 +49,8 @@ public class Hangman {
             switch(userEntry){
                 case 'y':
                 System.out.println();
-                timesPlayed++;
-                if(timesPlayed ==20){
+                timesPlayed++; // game counter
+                if(timesPlayed ==20){ // checks game count
                     System.out.println("Error: played too many times.");
                     System.exit(0);
                 }
@@ -64,7 +64,7 @@ public class Hangman {
                 System.out.println("\nInvalid entry. Try again...");
                 //in case the user inputs a command wrong
             }
-        }while(userEntry!='n');
+        }while(userEntry!='n'); // ensures user input
     }
 
     
@@ -75,7 +75,7 @@ public class Hangman {
     // return true; otherwise false
     public static boolean isInt(String str) {
         try{
-          Integer.parseInt(str);
+          Integer.parseInt(str); //checks for integer input 
           return true;
         }
         catch(NumberFormatException e){
@@ -153,7 +153,7 @@ public class Hangman {
 
     //checks user character guess
     public static boolean isChar(char c) {
-         if(Character.isLetter(c))
+         if(Character.isLetter(c)) // checks for character input
             return true;
          return false;
     }
@@ -169,13 +169,13 @@ public class Hangman {
     }
     
     //the method that contains the actual game play
-    public static void playGame(int guess, int space){
-        String word = RandomWord.newWord().toLowerCase();
+    public static void playGame(int guess, int space){ // parameters are the guesses allowed and the spaces nessecary
+        String word = RandomWord.newWord().toLowerCase(); // gets random word
         String str = "";
         String solve = "solve";
         int gCheck;
         Scanner sc = new Scanner(System.in);
-        for(int i = 0; i<word.length(); i++){
+        for(int i = 0; i<word.length(); i++){ // fills - word shown to player
             str= str + "-";
         }
         //creates the string with dashes in it to print as the user guesses
@@ -183,7 +183,7 @@ public class Hangman {
         do{
             System.out.print("Please enter the letter you want to guess: ");
             String input = sc.nextLine().toLowerCase();
-            if(input.equals(solve)) {
+            if(input.equals(solve)) { // checks if user wants to solve the entire word
                System.out.println("Please solve the word!");
                input = sc.nextLine().toLowerCase();
                if(input.equals(word)) {
@@ -193,12 +193,12 @@ public class Hangman {
                }
                if(!input.equals(word)) {
                   System.out.println("That is not the secret word");
-                  guess--;
+                  guess--; // takes away a guess 
                   System.out.println("Guesses remaining: " + guess);
                }
             }
-            char letter = input.charAt(0);
-            if(!isChar(letter)){
+            char letter = input.charAt(0); // user inputed character
+            if(!isChar(letter)){ 
                 System.out.println("Your input is not valid. Try again.");
                 continue;
             }//checks that the input is actually a letter
@@ -212,7 +212,7 @@ public class Hangman {
             }
             
             int[] inputArr = getPosition(input, space);
-            if(!validIndex(inputArr, word)){
+            if(!validIndex(inputArr, word)){ 
                System.out.println("Your input is not valid.  Try again.");
                System.out.println("Guesses Remaining: " + guess);
                continue;
@@ -220,9 +220,9 @@ public class Hangman {
             gCheck = 0;
             for(int i = 0; i < inputArr.length; i++) {
                if(word.charAt(inputArr[i]) == letter) {
-                  gCheck++;
+                  gCheck++;//if letter is in word
                   String s = "";
-                    for(int n=0; n<str.length(); n++){
+                    for(int n=0; n<str.length(); n++){ // puts letters into shown string of random word
                         if(n==inputArr[i]){
                             s+=letter;
                         }else{
@@ -246,6 +246,6 @@ public class Hangman {
                 System.out.println("You win! \r\nYou have guessed the word! Congratulations"); 
                 break;
             }
-        }while (guess != 0);
+        }while (guess != 0); //
     }
 }
